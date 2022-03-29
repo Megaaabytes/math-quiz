@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .button1 {
+            display: inline-block;
+            border: none;
+            padding: 1rem 2rem;
+            margin: 0;
+            text-decoration: none;
+            background: #0069ed;
+            color: #ffffff;
+            font-family: sans-serif;
+            font-size: 1rem;
+            line-height: 1;
+            cursor: pointer;
+            text-align: center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .button1:hover,
+        .button1:focus {
+            background: #0053ba;
+        }
+
+        .button1:focus {
+            outline: 1px solid #fff;
+            outline-offset: -4px;
+        }
+
+        .button1:active {
+            transform: scale(0.99);
+        }
+
+        .button2 {
+            display: inline-block;
+            border: none;
+            padding: 1rem 2rem;
+            margin: 0;
+            text-decoration: none;
+            background: #7e7e7e;
+            color: #ffffff;
+            font-family: sans-serif;
+            font-size: 1rem;
+            line-height: 1;
+            cursor: pointer;
+            text-align: center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .button2:hover,
+        .button2:focus {
+            background: #302f2f;
+        }
+
+        .button2:focus {
+            outline: 1px solid #fff;
+            outline-offset: -4px;
+        }
+
+        .button2:active {
+            transform: scale(0.99);
+        }
+
+        #answerBox {
+            width:200px;
+            height: auto + 3;
+            font-size:14pt;
+            font:bold; 
+        }
+    </style>
+</head>
+
+<title>
+    Epic survey
+</title>
+
+<body>
+    <label for="html" id="question">Question: </label><br>
+    <label for="html" id="null"></label><br>
+    <p>Answer: </p>
+    <input type="text" name="answer" value="" id="answerBox">
+    <label for="html" id="null"></label><br>
+    <label for="html" id="null"></label><br>
+    <label for="html" id="null"></label><br>
+    <button class="button button1" onclick="submit()">Submit</button>
+    <button class="button button2" onclick="giveup()">Give up</button>
+
+    <script>
+        var correctGuesses = 0;
+        var incorrectGuesses = 0;
+        var level = 0;
+        var questionAnswer;
+        
+        nextQuestion(false);
+        function modifyQuestion(newText)
+        {
+            document.getElementById('question').innerHTML = newText;
+        }
+
+        function nextQuestion(rightAnswer)
+        {
+            if(level === 0)
+            {
+                var questionTemplate = "an+45=b";
+                var questionParameter1 = randomInt(1, 100);
+                while(unknownValue === 0)
+                {
+                    nextQuestion(false);
+                }
+
+                questionTemplate = questionTemplate.replace(/a/g, questionParameter1);
+
+                var unknownValue = randomInt(-500, 500);
+                var answer = (questionParameter1 * unknownValue) + 45;
+
+                questionTemplate = questionTemplate.replace(/b/g, answer);
+                questionAnswer = unknownValue;
+                modifyQuestion("Question " + level + ". Solve 'n'. " + questionTemplate);
+
+                if(rightAnswer)
+                {
+                    level++;
+                    nextQuestion(false);
+                }
+            }
+            else if(level === 1)
+            {
+                var questionTemplate = "an+(500/17)n-15=b";
+                var questionParameter1 = randomInt(1, 750);
+                questionTemplate = questionTemplate.replace(/a/g, questionParameter1);
+
+                var unknownValue = randomInt(-1000, 1000);
+                while(unknownValue === 0)
+                {
+                    nextQuestion(false);
+                }
+
+                var answer = (questionParameter1 * unknownValue) + (500 / 17) * unknownValue - 15;
+
+                questionTemplate = questionTemplate.replace(/b/g, answer);
+                questionAnswer = unknownValue;
+                modifyQuestion("Question " + level + ". Solve 'n'. " + questionTemplate);
+
+                if(rightAnswer)
+                {
+                    level++;
+                    nextQuestion(false);
+                }
+            }
+            else if(level === 2)
+            {
+                var questionTemplate = "(a+127*64n)-(b/2)+c=d";
+                var questionParameter1 = randomInt(0, 2000);
+                questionTemplate = questionTemplate.replace(/a/g, questionParameter1);
+
+                var questionParameter2 = randomInt(0, 4000);
+                questionTemplate = questionTemplate.replace(/b/g, questionParameter2);
+
+                var questionParameter3 = randomInt(0, 4000);
+                questionTemplate = questionTemplate.replace(/c/g, questionParameter3);
+
+                var unknownValue = randomInt(-5000, 5000);
+                while(unknownValue === 0)
+                {
+                    nextQuestion(false);
+                }
+
+                var answer = (questionParameter1 + 127 * (64 * unknownValue)) - (questionParameter2 / 2) + questionParameter3;
+
+                questionTemplate = questionTemplate.replace(/d/g, answer);
+                questionAnswer = unknownValue;
+                modifyQuestion("Question " + level + ". Solve 'n'. " + questionTemplate);
+
+                if(rightAnswer)
+                {
+                    level++;
+                    nextQuestion(false);
+                }
+            }
+            else if(level === 3)
+            {
+                var questionTemplate = "(an)-(b-c)/d+e-f*a=g";
+                var a = randomInt(1, 8000);
+                questionTemplate = questionTemplate.replace(/a/g, a);
+
+                var b = randomInt(-2000, 8000);
+                questionTemplate = questionTemplate.replace(/b/g, b);
+
+                var c = randomInt(-2000, 8000);
+                questionTemplate = questionTemplate.replace(/c/g, c);
+
+                var d = randomInt(-2000, 8000);
+                questionTemplate = questionTemplate.replace(/d/g, d);
+
+                var e = randomInt(-2000, 8000);
+                questionTemplate = questionTemplate.replace(/e/g, e);
+
+                var f = randomInt(-2000, 8000);
+                questionTemplate = questionTemplate.replace(/f/g, f);
+
+                var unknownValue = randomInt(-7500, 7500);
+                while(unknownValue === 0)
+                {
+                    nextQuestion(false);
+                }
+
+                var answer = (a * unknownValue) - (b - c) / d + e - f * a;
+
+                questionTemplate = questionTemplate.replace(/g/g, answer);
+                questionAnswer = unknownValue;
+                modifyQuestion("Question " + level + ". Solve 'n'. " + questionTemplate);
+                if(rightAnswer)
+                {
+                    level++;
+                    nextQuestion(false);
+                }
+            }
+            else if(level === 4)
+            {
+                var questionTemplate = "n - (b*b*b) - (a + c) * f + d / e * (f * a) + 1 = g";
+                var a = randomInt(10000, 100000);
+                questionTemplate = questionTemplate.replace(/a/g, a);
+
+                var b = randomInt(10000, 100000);
+                questionTemplate = questionTemplate.replace(/b/g, b);
+
+                var c = randomInt(10000, 100000);
+                questionTemplate = questionTemplate.replace(/c/g, c);
+
+                var d = randomInt(10000, 100000);
+                questionTemplate = questionTemplate.replace(/d/g, d);
+
+                var e = randomInt(10000, 100000);
+                questionTemplate = questionTemplate.replace(/e/g, e);
+
+                var f = randomInt(10000, 100000);
+                questionTemplate = questionTemplate.replace(/f/g, f);
+
+                var unknownValue = randomInt(10000, 100000);
+                while(unknownValue === 0)
+                {
+                    nextQuestion(false);
+                }
+
+                var answer = unknownValue - (b * b * b) - (a + c) * f + d / e * (f * a) + 1;
+
+                questionTemplate = questionTemplate.replace(/g/g, answer);
+                questionAnswer = unknownValue;
+                modifyQuestion("Question " + level + ". Solve 'n'. " + questionTemplate);
+                if(rightAnswer)
+                {
+                    level++;
+                    nextQuestion(false);
+                }
+            }
+        }
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+        function randomInt(min, max)
+        {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        function giveup()
+        {
+            alert("You gave up the quiz. Score (the lower the better): " + (correctGuesses + incorrectGuesses) / 2);
+
+            correctGuesses = 0;
+            incorrectGuesses = 0;
+            level = 0;
+            questionAnswer = "";
+            nextQuestion(false);
+        }
+
+        function submit()
+        {
+            var text = document.getElementsByName('answer')[0].value;
+
+            if(level === 0)
+            {
+                if(text == questionAnswer)
+                {
+                    correctGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("You did it! You have made it to the next question! Lets try something harder because that was too easy.");
+                    nextQuestion(true);
+                }
+                else
+                {
+                    incorrectGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("You failed the question, generating a new one. ");
+                    nextQuestion(false);
+                }
+            }
+            else if(level === 1)
+            {
+                if(text == questionAnswer)
+                {
+                    correctGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("Why am I making this too easy!! HOW ABOUT SOMETHING ALOT HARDER THAN THIS.");
+                    nextQuestion(true);
+                }
+                else
+                {
+                    incorrectGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("You failed the question, generating a new one. ");
+                    nextQuestion(false);
+                }
+            }
+            else if(level === 2)
+            {
+                if(text == questionAnswer)
+                {
+                    correctGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("Hmm, you are actually pretty decent at this. Lets try something a \"little\" more challenging.'");
+                    nextQuestion(true);
+                }
+                else
+                {
+                    incorrectGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("You failed the question, generating a new one. ");
+                    nextQuestion(false);
+                }
+            }
+            else if(level === 3)
+            {
+                if(text == questionAnswer)
+                {
+                    correctGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("Wow, I can't believe you solved it. Next question! Only 1 question left!");
+                    nextQuestion(true);
+                }
+                else
+                {
+                    incorrectGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("You failed the question, generating a new one. ");
+                    nextQuestion(false);
+                }
+            }
+            else if(level === 4)
+            {
+                if(text == questionAnswer)
+                {
+                    correctGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("Congratulations! You have defeated my math quiz.\nQuestions answered correctly: " + correctGuesses + "\nQuestions answered incorrectly: " + incorrectGuesses + "\nScore (the lower the better): " + (correctGuesses + incorrectGuesses) / 2);
+                    
+                    correctGuesses = 0;
+                    incorrectGuesses = 0;
+                    level = 0;
+                    questionAnswer = "";
+                    nextQuestion(false);
+                }
+                else
+                {
+                    incorrectGuesses++;
+                    document.getElementsByName('answer')[0].value = "";
+                    alert("You failed the question, generating a new one. ");
+                    nextQuestion(false);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
