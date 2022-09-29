@@ -288,7 +288,7 @@
                 {
                     correctGuesses++;
                     document.getElementsByName('answer')[0].value = "";
-                    alert("You did it! You have made it to the next question! Lets try something harder because that was too easy.");
+                    alert("Advanced to question: " + correctGuesses);
                     nextQuestion(true);
                 }
                 else
@@ -305,7 +305,7 @@
                 {
                     correctGuesses++;
                     document.getElementsByName('answer')[0].value = "";
-                    alert("Why am I making this too easy!! HOW ABOUT SOMETHING ALOT HARDER THAN THIS.");
+                    alert("Advanced to question: " + correctGuesses);
                     nextQuestion(true);
                 }
                 else
@@ -322,7 +322,7 @@
                 {
                     correctGuesses++;
                     document.getElementsByName('answer')[0].value = "";
-                    alert("Hmm, you are actually pretty decent at this. Lets try something a \"little\" more challenging.'");
+                    alert("Advanced to question: " + correctGuesses);
                     nextQuestion(true);
                 }
                 else
@@ -339,7 +339,7 @@
                 {
                     correctGuesses++;
                     document.getElementsByName('answer')[0].value = "";
-                    alert("Wow, I can't believe you solved it. Next question! Only 1 question left!");
+                    alert("Advanced to question: " + correctGuesses);
                     nextQuestion(true);
                 }
                 else
@@ -356,7 +356,7 @@
                 {
                     correctGuesses++;
                     document.getElementsByName('answer')[0].value = "";
-                    alert("Congratulations! You have defeated my math quiz.\nQuestions answered correctly: " + correctGuesses + "\nQuestions answered incorrectly: " + incorrectGuesses + "\nScore (the lower the better): " + (correctGuesses + incorrectGuesses) / 2);
+                    alert("Congratulations!\nQuestions answered correctly: " + correctGuesses + "\nQuestions answered incorrectly: " + incorrectGuesses + "\nScore (the lower the better): " + (correctGuesses + incorrectGuesses) / 2);
                     
                     correctGuesses = 0;
                     incorrectGuesses = 0;
